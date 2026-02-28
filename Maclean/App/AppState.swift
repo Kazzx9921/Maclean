@@ -5,10 +5,7 @@ enum WorkflowPhase: Equatable {
     case idle
     case scanning
     case scanned
-    case dryRun
-    case confirming
     case executing
-    case pendingConfirm  // files moved to trash, waiting for user to test & confirm
     case completed
 }
 

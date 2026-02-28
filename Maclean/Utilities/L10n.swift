@@ -217,10 +217,10 @@ final class L10n: ObservableObject {
         .de: "Auf Ihrem System wurden keine unnötigen Dateien gefunden.", .es: "No se encontraron archivos innecesarios en su sistema.", .fr: "Aucun fichier inutile trouvé sur votre système.", .pt: "Não foram encontrados ficheiros desnecessários no seu sistema.", .ru: "На вашей системе не найдено ненужных файлов.",
         .ar: "لم يتم العثور على ملفات غير ضرورية في نظامك.", .hi: "आपके सिस्टम में कोई अनावश्यक फ़ाइल नहीं मिली।", .it: "Non sono stati trovati file non necessari nel sistema.", .nl: "Er zijn geen onnodige bestanden gevonden op je systeem.", .tr: "Sisteminizde gereksiz dosya bulunamadı.",
     ]) }
-    var reviewAndClean: String { t([
-        .en: "Preview Delete", .zhHant: "預覽刪除", .zhHans: "预览删除", .ja: "削除をプレビュー", .ko: "삭제 미리보기",
-        .de: "Löschvorschau", .es: "Vista previa de eliminación", .fr: "Aperçu de suppression", .pt: "Pré-visualizar eliminação", .ru: "Предварительный просмотр удаления",
-        .ar: "معاينة الحذف", .hi: "हटाने का पूर्वावलोकन", .it: "Anteprima ed elimina", .nl: "Voorbeeld en verwijder", .tr: "Önizle ve Sil",
+    var executeClean: String { t([
+        .en: "Clean Up", .zhHant: "執行清理", .zhHans: "执行清理", .ja: "クリーンアップ", .ko: "정리 실행",
+        .de: "Bereinigen", .es: "Limpiar", .fr: "Nettoyer", .pt: "Limpar", .ru: "Очистить",
+        .ar: "تنظيف", .hi: "सफ़ाई करें", .it: "Pulisci", .nl: "Opruimen", .tr: "Temizle",
     ]) }
     var reset: String { t([
         .en: "Reset", .zhHant: "重置", .zhHans: "重置", .ja: "リセット", .ko: "초기화",
@@ -535,14 +535,6 @@ final class L10n: ObservableObject {
         .ar: "جارٍ إزالة \(current) / \(total)", .hi: "\(current) / \(total) हटाया जा रहा है",
         .it: "Rimozione \(current) / \(total)", .nl: "Verwijderen \(current) / \(total)", .tr: "\(current) / \(total) kaldırılıyor",
     ]) }
-    func restoredCount(_ count: Int) -> String { t([
-        .en: "\(count) files restored", .zhHant: "已復原 \(count) 個檔案", .zhHans: "已恢复 \(count) 个文件",
-        .ja: "\(count) 個のファイルを復元しました", .ko: "\(count)개 파일 복원됨",
-        .de: "\(count) Dateien wiederhergestellt", .es: "\(count) archivos restaurados", .fr: "\(count) fichiers restaurés",
-        .pt: "\(count) ficheiros restaurados", .ru: "\(count) файлов восстановлено",
-        .ar: "تمت استعادة \(count) ملف", .hi: "\(count) फ़ाइलें पुनर्स्थापित",
-        .it: "\(count) file ripristinati", .nl: "\(count) bestanden hersteld", .tr: "\(count) dosya geri yüklendi",
-    ]) }
     func freedSpace(_ size: String) -> String { t([
         .en: "Freed \(size)", .zhHant: "已幫你清理出 \(size) 空間", .zhHans: "已释放 \(size) 空间",
         .ja: "\(size) を解放しました", .ko: "\(size) 확보됨",
@@ -616,55 +608,8 @@ final class L10n: ObservableObject {
         .de: "Zurück", .es: "Atrás", .fr: "Retour", .pt: "Voltar", .ru: "Назад",
         .ar: "رجوع", .hi: "वापस", .it: "Indietro", .nl: "Terug", .tr: "Geri",
     ]) }
-    var moveToTrash: String { t([
-        .en: "Move to Trash", .zhHant: "移至垃圾桶", .zhHans: "移至废纸篓", .ja: "ゴミ箱に移動", .ko: "휴지통으로 이동",
-        .de: "In den Papierkorb legen", .es: "Mover a la Papelera", .fr: "Placer dans la Corbeille", .pt: "Mover para o Lixo", .ru: "Переместить в Корзину",
-        .ar: "نقل إلى سلة المهملات", .hi: "ट्रैश में ले जाएं", .it: "Sposta nel Cestino", .nl: "Verplaats naar Prullenmand", .tr: "Çöp Sepetine Taşı",
-    ]) }
 
     // MARK: - Execute
-    var movedToTrash: String { t([
-        .en: "Simulated Clean", .zhHant: "模擬清除", .zhHans: "模拟清除", .ja: "シミュレーションクリーン", .ko: "시뮬레이션 정리",
-        .de: "Simulierte Bereinigung", .es: "Limpieza simulada", .fr: "Nettoyage simulé", .pt: "Limpeza simulada", .ru: "Имитация очистки",
-        .ar: "تنظيف تجريبي", .hi: "सिमुलेटेड क्लीन", .it: "Pulizia simulata", .nl: "Gesimuleerd opruimen", .tr: "Simüle Temizlik",
-    ]) }
-    var movedToTrashDesc: String { t([
-        .en: "Confirm everything is fine, then clean up unnecessary files.",
-        .zhHant: "確認沒問題即可清除無用檔案。",
-        .zhHans: "确认没问题即可清除无用文件。",
-        .ja: "問題がないことを確認してから、不要なファイルを削除してください。",
-        .ko: "문제가 없는지 확인한 후 불필요한 파일을 정리하세요.",
-        .de: "Bestätigen Sie, dass alles in Ordnung ist, und bereinigen Sie dann unnötige Dateien.",
-        .es: "Confirme que todo está bien y luego limpie los archivos innecesarios.",
-        .fr: "Confirmez que tout est correct, puis nettoyez les fichiers inutiles.",
-        .pt: "Confirme que está tudo bem e depois limpe os ficheiros desnecessários.",
-        .ru: "Убедитесь, что всё в порядке, затем удалите ненужные файлы.",
-        .ar: "تأكد من أن كل شيء على ما يرام، ثم نظف الملفات غير الضرورية.",
-        .hi: "सब ठीक है यह पुष्टि करें, फिर अनावश्यक फ़ाइलें साफ़ करें।",
-        .it: "Conferma che tutto è in ordine, poi pulisci i file non necessari.",
-        .nl: "Bevestig dat alles in orde is en ruim dan onnodige bestanden op.",
-        .tr: "Her şeyin yolunda olduğunu onaylayın, ardından gereksiz dosyaları temizleyin.",
-    ]) }
-    var confirmPermanentDelete: String { t([
-        .en: "Confirm Permanent Delete", .zhHant: "確認永久刪除", .zhHans: "确认永久删除", .ja: "完全削除を確認", .ko: "영구 삭제 확인",
-        .de: "Endgültiges Löschen bestätigen", .es: "Confirmar eliminación permanente", .fr: "Confirmer la suppression définitive", .pt: "Confirmar eliminação permanente", .ru: "Подтвердить окончательное удаление",
-        .ar: "تأكيد الحذف الدائم", .hi: "स्थायी हटाने की पुष्टि करें", .it: "Conferma eliminazione definitiva", .nl: "Definitief verwijderen bevestigen", .tr: "Kalıcı Silmeyi Onayla",
-    ]) }
-    var restoreAll: String { t([
-        .en: "Cancel Delete", .zhHant: "取消刪除", .zhHans: "取消删除", .ja: "削除をキャンセル", .ko: "삭제 취소",
-        .de: "Löschen abbrechen", .es: "Cancelar eliminación", .fr: "Annuler la suppression", .pt: "Cancelar eliminação", .ru: "Отменить удаление",
-        .ar: "إلغاء الحذف", .hi: "हटाना रद्द करें", .it: "Annulla eliminazione", .nl: "Verwijderen annuleren", .tr: "Silmeyi İptal Et",
-    ]) }
-    var permanentDeleteDone: String { t([
-        .en: "Permanently Deleted", .zhHant: "已永久刪除", .zhHans: "已永久删除", .ja: "完全に削除しました", .ko: "영구 삭제됨",
-        .de: "Endgültig gelöscht", .es: "Eliminado permanentemente", .fr: "Supprimé définitivement", .pt: "Eliminado permanentemente", .ru: "Окончательно удалено",
-        .ar: "تم الحذف نهائياً", .hi: "स्थायी रूप से हटाया गया", .it: "Eliminato definitivamente", .nl: "Definitief verwijderd", .tr: "Kalıcı Olarak Silindi",
-    ]) }
-    var restoredDone: String { t([
-        .en: "Files Restored", .zhHant: "檔案已復原", .zhHans: "文件已恢复", .ja: "ファイルが復元されました", .ko: "파일 복원됨",
-        .de: "Dateien wiederhergestellt", .es: "Archivos restaurados", .fr: "Fichiers restaurés", .pt: "Ficheiros restaurados", .ru: "Файлы восстановлены",
-        .ar: "تمت استعادة الملفات", .hi: "फ़ाइलें पुनर्स्थापित", .it: "File ripristinati", .nl: "Bestanden hersteld", .tr: "Dosyalar Geri Yüklendi",
-    ]) }
     var cleaningComplete: String { t([
         .en: "Cleaning Complete", .zhHant: "清理完成", .zhHans: "清理完成", .ja: "クリーニング完了", .ko: "정리 완료",
         .de: "Bereinigung abgeschlossen", .es: "Limpieza completada", .fr: "Nettoyage terminé", .pt: "Limpeza concluída", .ru: "Очистка завершена",
@@ -827,6 +772,21 @@ final class L10n: ObservableObject {
         .en: "Build", .zhHant: "建置", .zhHans: "构建", .ja: "ビルド", .ko: "빌드",
         .de: "Build", .es: "Compilación", .fr: "Build", .pt: "Compilação", .ru: "Сборка",
         .ar: "البناء", .hi: "बिल्ड", .it: "Build", .nl: "Build", .tr: "Derleme",
+    ]) }
+    var sourceCode: String { t([
+        .en: "Source Code", .zhHant: "原始碼", .zhHans: "源代码", .ja: "ソースコード", .ko: "소스 코드",
+        .de: "Quellcode", .es: "Código fuente", .fr: "Code source", .pt: "Código fonte", .ru: "Исходный код",
+        .ar: "الكود المصدري", .hi: "सोर्स कोड", .it: "Codice sorgente", .nl: "Broncode", .tr: "Kaynak Kodu",
+    ]) }
+    var supportDeveloper: String { t([
+        .en: "Support the Developer", .zhHant: "支持開發者", .zhHans: "支持开发者", .ja: "開発者を支援", .ko: "개발자 후원",
+        .de: "Entwickler unterstützen", .es: "Apoyar al desarrollador", .fr: "Soutenir le développeur", .pt: "Apoiar o desenvolvedor", .ru: "Поддержать разработчика",
+        .ar: "دعم المطور", .hi: "डेवलपर का समर्थन करें", .it: "Supporta lo sviluppatore", .nl: "Ondersteun de ontwikkelaar", .tr: "Geliştiriciyi Destekle",
+    ]) }
+    var links: String { t([
+        .en: "Links", .zhHant: "連結", .zhHans: "链接", .ja: "リンク", .ko: "링크",
+        .de: "Links", .es: "Enlaces", .fr: "Liens", .pt: "Links", .ru: "Ссылки",
+        .ar: "روابط", .hi: "लिंक", .it: "Link", .nl: "Links", .tr: "Bağlantılar",
     ]) }
     var language: String { t([
         .en: "Language", .zhHant: "語言", .zhHans: "语言", .ja: "言語", .ko: "언어",

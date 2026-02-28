@@ -11,15 +11,13 @@ struct ScanView: View {
             switch appState.phase {
             case .idle, .scanning:
                 scanningView
-            case .scanned, .dryRun, .confirming:
+            case .scanned:
                 if appState.scanResults.isEmpty {
                     emptyView
                 } else {
                     scanResultsView
                 }
             case .executing:
-                ExecuteView()
-            case .pendingConfirm:
                 ExecuteView()
             case .completed:
                 ExecuteView()
@@ -28,6 +26,11 @@ struct ScanView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .navigationTitle(l10n.scan)
         .task {
+            if appState.phase == .idle {
+                startScan()
+            }
+        }
+        .onChange(of: appState.phase) {
             if appState.phase == .idle {
                 startScan()
             }
@@ -98,8 +101,8 @@ struct ScanView: View {
 
             Spacer()
 
-            Button(action: executeMove) {
-                Text(l10n.reviewAndClean)
+            Button(action: executeClean) {
+                Text(l10n.executeClean)
             }
             .glassProminentButtonStyle()
             .controlSize(.large)
@@ -143,18 +146,30 @@ struct ScanView: View {
         }
     }
 
-    private func executeMove() {
+    private func executeClean() {
         let report = DryRunReport(categories: appState.scanResults)
         appState.dryRunReport = report
         appState.phase = .executing
 
         Task {
-            let summary = await cleanEngine.moveToTrash(report: report) { progress, file in
+            let summary = await cleanEngine.deleteItems(report: report) { progress, file in
                 appState.progress = progress
                 appState.currentFile = file
             }
             appState.cleanSummary = summary
-            appState.phase = .pendingConfirm
+
+            HistoryService.shared.add(
+                CleanHistory(
+                    date: summary.completedAt,
+                    totalCleaned: summary.totalCleaned,
+                    filesRemoved: summary.filesRemoved,
+                    categories: report.categories.map {
+                        CleanHistory.CategorySummary(name: $0.category, size: $0.totalSize, count: $0.selectedCount)
+                    }
+                )
+            )
+
+            appState.phase = .completed
         }
     }
 }

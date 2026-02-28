@@ -86,7 +86,7 @@ final class DiskAnalyzerViewModel: ObservableObject {
             let category = CategoryResult(category: "Large Files", icon: "doc.fill", items: items)
             let report = DryRunReport(categories: [category])
 
-            let summary = await cleanEngine.moveToTrash(report: report) { [weak self] pct, file in
+            let summary = await cleanEngine.deleteItems(report: report) { [weak self] pct, file in
                 self?.progress = pct
                 self?.removingCurrent = Int(pct * Double(self?.removingTotal ?? 0))
                 self?.currentPath = file

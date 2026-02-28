@@ -103,6 +103,7 @@ final class ProjectCleanupViewModel: ObservableObject {
                 progress = Double(index + 1) / Double(toRemove.count)
                 removingCurrent = index + 1
                 currentPath = project.artifactPath.lastPathComponent
+                await Task.yield()
 
                 let resolved = project.artifactPath.resolvingSymlinksInPath()
                 guard FileSystemService.isPathSafe(resolved) else { continue }

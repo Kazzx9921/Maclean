@@ -26,6 +26,16 @@ struct SettingsView: View {
                 LabeledContent(l10n.version, value: Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "0.1.0")
                 LabeledContent(l10n.build, value: Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "1")
             }
+
+            Section(l10n.links) {
+                Link(destination: URL(string: "https://github.com/kazzx9921/")!) {
+                    Label(l10n.sourceCode, systemImage: "curlybraces")
+                }
+
+                Link(destination: URL(string: "https://buymeacoffee.com/kazen")!) {
+                    Label(l10n.supportDeveloper, systemImage: "cup.and.saucer")
+                }
+            }
         }
         .formStyle(.grouped)
         .navigationTitle(l10n.settings)

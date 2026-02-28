@@ -91,7 +91,7 @@ final class AppManagerViewModel: ObservableObject {
             let category = CategoryResult(category: "Apps", icon: "app.badge.checkmark", items: items)
             let report = DryRunReport(categories: [category])
 
-            let summary = await cleanEngine.moveToTrash(report: report) { [weak self] pct, file in
+            let summary = await cleanEngine.deleteItems(report: report) { [weak self] pct, file in
                 self?.progress = pct
                 self?.removingCurrent = Int(pct * Double(self?.removingTotal ?? 0))
                 self?.currentAppName = file
