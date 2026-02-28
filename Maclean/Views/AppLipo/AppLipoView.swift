@@ -3,9 +3,6 @@ import SwiftUI
 struct AppLipoView: View {
     @EnvironmentObject var vm: AppLipoViewModel
     @EnvironmentObject var l10n: L10n
-    #if APPSTORE
-    @EnvironmentObject var storeService: StoreService
-    #endif
 
     var body: some View {
         VStack(spacing: 0) {
@@ -26,16 +23,6 @@ struct AppLipoView: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .navigationTitle(l10n.appLipo)
-        #if APPSTORE
-        .sheet(isPresented: $storeService.showPaywall) {
-            PaywallView()
-        }
-        .onChange(of: vm.phase) {
-            if vm.phase == .done {
-                storeService.addCleaned(vm.savedSize)
-            }
-        }
-        #endif
         .task { if vm.phase == .idle { vm.startScan() } }
     }
 
@@ -172,12 +159,6 @@ struct AppLipoView: View {
     // MARK: - Helpers
 
     private func thinSelected() {
-        #if APPSTORE
-        if storeService.requiresPayment {
-            storeService.showPaywall = true
-            return
-        }
-        #endif
         vm.thinSelected()
     }
 

@@ -3,9 +3,6 @@ import SwiftUI
 struct AppManagerView: View {
     @EnvironmentObject var vm: AppManagerViewModel
     @EnvironmentObject var l10n: L10n
-    #if APPSTORE
-    @EnvironmentObject var storeService: StoreService
-    #endif
 
     var body: some View {
         VStack(spacing: 0) {
@@ -26,16 +23,6 @@ struct AppManagerView: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .navigationTitle(l10n.appManager)
-        #if APPSTORE
-        .sheet(isPresented: $storeService.showPaywall) {
-            PaywallView()
-        }
-        .onChange(of: vm.phase) {
-            if vm.phase == .done {
-                storeService.addCleaned(vm.removedSize)
-            }
-        }
-        #endif
         .task { if vm.phase == .idle { vm.startScan() } }
     }
 
@@ -158,12 +145,6 @@ struct AppManagerView: View {
     // MARK: - Helpers
 
     private func removeSelected() {
-        #if APPSTORE
-        if storeService.requiresPayment {
-            storeService.showPaywall = true
-            return
-        }
-        #endif
         vm.removeSelected()
     }
 

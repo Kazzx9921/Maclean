@@ -140,10 +140,6 @@ struct ExecuteView: View {
                 appState.currentFile = file
             }
 
-            #if APPSTORE
-            StoreService.shared.addCleaned(summary.totalCleaned)
-            #endif
-
             HistoryService.shared.add(
                 CleanHistory(
                     date: summary.completedAt,

@@ -9,8 +9,6 @@ options:
 configs:
   Debug: debug
   Release: release
-  Debug-AppStore: debug
-  Release-AppStore: release
 
 settings:
   base:
@@ -22,13 +20,7 @@ settings:
     CURRENT_PROJECT_VERSION: "1"
     SWIFT_STRICT_CONCURRENCY: complete
     CODE_SIGN_ENTITLEMENTS: Maclean/Resources/Maclean.entitlements
-    SWIFT_ACTIVE_COMPILATION_CONDITIONS: OPENSOURCE
-  configs:
-    Debug-AppStore:
-      SWIFT_ACTIVE_COMPILATION_CONDITIONS: APPSTORE
-    Release-AppStore:
-      SWIFT_ACTIVE_COMPILATION_CONDITIONS: APPSTORE
-
+    SWIFT_ACTIVE_COMPILATION_CONDITIONS: ""
 schemes:
   Maclean:
     build:
@@ -36,15 +28,6 @@ schemes:
         Maclean: all
     run:
       config: Debug
-  Maclean-AppStore:
-    build:
-      targets:
-        Maclean: all
-    run:
-      config: Debug-AppStore
-    archive:
-      config: Release-AppStore
-
 targets:
   Maclean:
     type: application

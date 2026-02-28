@@ -11,7 +11,7 @@
 <p align="center">
   <img src="https://img.shields.io/badge/platform-macOS%2015.0%2B-blue" alt="Platform">
   <img src="https://img.shields.io/badge/swift-6.0-orange" alt="Swift">
-  <img src="https://img.shields.io/badge/license-GPL--v3-green" alt="License">
+  <img src="https://img.shields.io/badge/license-MIT-green" alt="License">
 </p>
 
 ## Features
@@ -44,7 +44,7 @@ xcodegen generate
 open Maclean.xcodeproj
 ```
 
-Build and run with the **Maclean** scheme (open-source, no IAP).
+Build and run with the **Maclean** scheme.
 
 ## Scan Modules
 
@@ -74,6 +74,4 @@ Maclean is designed with safety as a priority:
 
 ## License
 
-This project is licensed under the [GNU General Public License v3.0](LICENSE).
-
-You are free to use, modify, and distribute this software under the terms of GPL v3. Any derivative work must also be distributed under the same license.
+This project is licensed under the [MIT License](LICENSE).

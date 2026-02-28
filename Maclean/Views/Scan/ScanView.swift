@@ -3,9 +3,6 @@ import SwiftUI
 struct ScanView: View {
     @EnvironmentObject var appState: AppState
     @EnvironmentObject var l10n: L10n
-    #if APPSTORE
-    @EnvironmentObject var storeService: StoreService
-    #endif
     private let scanEngine = ScanEngine()
     private let cleanEngine = CleanEngine()
 
@@ -30,11 +27,6 @@ struct ScanView: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .navigationTitle(l10n.scan)
-        #if APPSTORE
-        .sheet(isPresented: $storeService.showPaywall) {
-            PaywallView()
-        }
-        #endif
         .task {
             if appState.phase == .idle {
                 startScan()
@@ -152,13 +144,6 @@ struct ScanView: View {
     }
 
     private func executeMove() {
-        #if APPSTORE
-        if storeService.requiresPayment {
-            storeService.showPaywall = true
-            return
-        }
-        #endif
-
         let report = DryRunReport(categories: appState.scanResults)
         appState.dryRunReport = report
         appState.phase = .executing

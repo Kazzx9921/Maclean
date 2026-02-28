@@ -3,9 +3,6 @@ import SwiftUI
 struct SidebarView: View {
     @EnvironmentObject var appState: AppState
     @EnvironmentObject var l10n: L10n
-    #if APPSTORE
-    @EnvironmentObject var storeService: StoreService
-    #endif
 
     private var mainItems: [SidebarItem] {
         [.dashboard, .scan, .appManager, .projectCleanup, .diskAnalyzer, .appLipo, .systemTools, .whitelist]
@@ -21,15 +18,6 @@ struct SidebarView: View {
             .listStyle(.sidebar)
 
             HStack {
-                #if APPSTORE
-                if storeService.isPro {
-                    Text("Pro")
-                        .font(.caption.bold())
-                        .foregroundStyle(.orange)
-                        .padding(.leading, 12)
-                }
-                #endif
-
                 Spacer()
 
                 Button {

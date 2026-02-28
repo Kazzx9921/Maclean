@@ -12,9 +12,6 @@ struct MacleanApp: App {
     @StateObject private var historyService = HistoryService.shared
     @StateObject private var whitelistService = WhitelistService.shared
     @StateObject private var sentinel = SentinelService.shared
-    #if APPSTORE
-    @StateObject private var storeService = StoreService.shared
-    #endif
 
     var body: some Scene {
         WindowGroup {
@@ -28,9 +25,6 @@ struct MacleanApp: App {
                 .environmentObject(historyService)
                 .environmentObject(whitelistService)
                 .environmentObject(sentinel)
-                #if APPSTORE
-                .environmentObject(storeService)
-                #endif
                 .frame(minWidth: 720, minHeight: 480)
         }
         .windowStyle(.automatic)

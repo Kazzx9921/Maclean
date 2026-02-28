@@ -3,9 +3,6 @@ import SwiftUI
 struct ProjectCleanupView: View {
     @EnvironmentObject var vm: ProjectCleanupViewModel
     @EnvironmentObject var l10n: L10n
-    #if APPSTORE
-    @EnvironmentObject var storeService: StoreService
-    #endif
 
     var body: some View {
         VStack(spacing: 0) {
@@ -26,16 +23,6 @@ struct ProjectCleanupView: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .navigationTitle(l10n.projectCleanup)
-        #if APPSTORE
-        .sheet(isPresented: $storeService.showPaywall) {
-            PaywallView()
-        }
-        .onChange(of: vm.phase) {
-            if vm.phase == .done {
-                storeService.addCleaned(vm.removedSize)
-            }
-        }
-        #endif
         .task { if vm.phase == .idle { vm.startScan() } }
     }
 
@@ -144,12 +131,6 @@ struct ProjectCleanupView: View {
     }
 
     private func removeSelected() {
-        #if APPSTORE
-        if storeService.requiresPayment {
-            storeService.showPaywall = true
-            return
-        }
-        #endif
         vm.removeSelected()
     }
 
