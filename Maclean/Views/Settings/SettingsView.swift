@@ -28,7 +28,7 @@ struct SettingsView: View {
             }
 
             Section(l10n.links) {
-                Link(destination: URL(string: "https://github.com/kazzx9921/")!) {
+                Link(destination: URL(string: "https://github.com/kazzx9921/Maclean")!) {
                     Label(l10n.sourceCode, systemImage: "curlybraces")
                 }
 
