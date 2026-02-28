@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/image.png" width="128" height="128" alt="Maclean Icon">
+  <img src="Maclean.png" width="128" height="128" alt="Maclean Icon">
 </p>
 
 <h1 align="center">Maclean</h1>
@@ -65,12 +65,20 @@ Build and run with the **Maclean** scheme.
 
 Maclean is designed with safety as a priority:
 
-- **Trash-first deletion** — Files are moved to Trash, not permanently deleted.
-- **Dry run preview** — Review exactly what will be removed before confirming.
 - **Path validation** — Operations are restricted to the user's home directory; critical system paths are blocked.
 - **Deduplication** — Files won't appear in multiple scan categories.
 - **Whitelisting** — User-defined exclusion paths.
 - **History logging** — All cleanup operations are recorded.
+
+## Star History
+
+<a href="https://star-history.com/#Kazzx9921/Maclean&Date">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=Kazzx9921/Maclean&type=Date&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=Kazzx9921/Maclean&type=Date" />
+   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=Kazzx9921/Maclean&type=Date" />
+ </picture>
+</a>
 
 ## License
 
