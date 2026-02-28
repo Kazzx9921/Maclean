@@ -1,0 +1,16 @@
+# Xcode
+Maclean.xcodeproj/
+build/
+DerivedData/
+*.xcuserdata
+*.xcworkspace
+
+# macOS
+.DS_Store
+
+# Claude
+.claude/
+CLAUDE.md
+
+# Docs (private)
+docs/

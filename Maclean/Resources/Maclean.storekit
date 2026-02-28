@@ -1,0 +1,100 @@
+{
+  "identifier" : "com.geekaz.maclean.storekit",
+  "nonRenewableSubscriptions" : [
+
+  ],
+  "products" : [
+    {
+      "displayPrice" : "3.99",
+      "familyShareable" : false,
+      "internalID" : "1",
+      "localizations" : [
+        {
+          "description" : "Unlock unlimited cleanup with no quota limits.",
+          "displayName" : "Maclean Pro",
+          "locale" : "en_US"
+        },
+        {
+          "description" : "解鎖無限制清理額度",
+          "displayName" : "Maclean Pro",
+          "locale" : "zh_TW"
+        },
+        {
+          "description" : "解锁无限制清理额度",
+          "displayName" : "Maclean Pro",
+          "locale" : "zh_CN"
+        },
+        {
+          "description" : "無制限のクリーンアップをアンロック",
+          "displayName" : "Maclean Pro",
+          "locale" : "ja"
+        },
+        {
+          "description" : "무제한 정리 잠금 해제",
+          "displayName" : "Maclean Pro",
+          "locale" : "ko"
+        }
+      ],
+      "productID" : "com.geekaz.maclean.pro",
+      "referenceName" : "Maclean Pro Unlock",
+      "type" : "NonConsumable"
+    }
+  ],
+  "settings" : {
+    "_failTransactionsEnabled" : false,
+    "_storeKitErrors" : [
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Load Products"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Purchase"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Verification"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "App Store Sync"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Subscription Status"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "App Transaction"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Manage Subscriptions Sheet"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Refund Request Sheet"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Offer Code Redeem Sheet"
+      }
+    ]
+  },
+  "subscriptionGroups" : [
+
+  ],
+  "version" : {
+    "major" : 4,
+    "minor" : 0
+  }
+}
